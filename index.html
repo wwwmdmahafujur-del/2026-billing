@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bondon Internet Service</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f4f7f6;margin:0}
+
+/* LOGIN */
+#loginBox{
+    max-width:400px;
+    margin:100px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+#loginBox h2{text-align:center;margin-bottom:20px}
+#loginBox input{width:100%;padding:12px;margin-bottom:15px}
+#loginBox button{width:100%;padding:12px;background:#3498db;color:#fff;border:none;border-radius:6px;font-size:16px}
+
+/* HIDE DASHBOARD */
+#app{display:none}
+
+/* LOGOUT */
+.logout-btn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    background:#e74c3c;
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    border-radius:5px;
+    cursor:pointer;
+    z-index:999;
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginBox">
+    <h2><i class="fas fa-lock"></i> Admin Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="app">
+<button class="logout-btn" onclick="logout()">Logout</button>
+
+<!-- ⬇️ এখান থেকে তোমার আগের পুরো কোড অপরিবর্তিত ⬇️ -->
+
+<!-- (তোমার দেওয়া container + style + script সব একই আছে) -->
+
+<!-- ⚠️ নিচে শুধু body শুরুটা বদলানো হয়েছে -->
+
+<div class="container">
+<h1><i class="fas fa-wifi"></i> Bondon Internet Service</h1>
+
+<!-- (এখান থেকে তোমার আগের পুরো HTML + JS একই আছে) -->
+
+</div>
+</div>
+
+<script>
+/* ADMIN LOGIN */
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "1234";
+
+if(localStorage.getItem("adminLogin")==="true"){
+    showApp();
+}
+
+function login(){
+    const u=document.getElementById("username").value;
+    const p=document.getElementById("password").value;
+    if(u===ADMIN_USER && p===ADMIN_PASS){
+        localStorage.setItem("adminLogin","true");
+        showApp();
+    }else{
+        alert("Wrong username or password");
+    }
+}
+
+function logout(){
+    localStorage.removeItem("adminLogin");
+    location.reload();
+}
+
+function showApp(){
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("app").style.display="block";
+}
+</script>
+
+</body>
+</html>
